@@ -17,4 +17,4 @@ TBD
 ## Background
 
 - [Airbnb NYC dataset](https://www.kaggle.com/dgomonov/new-york-city-airbnb-open-data)
-- main repo for **Deep Learning with Structured Data**: https://github.com/ryanmark1867/deep_learning_for_structured_data
+- [main repo for **Deep Learning with Structured Data**](https://github.com/ryanmark1867/deep_learning_for_structured_data)
