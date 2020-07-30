@@ -1,5 +1,6 @@
 general:
    load_from_scratch: False
+   save_raw_dataframe: False
    save_transformed_dataframe: True
    remove_bad_values: True
    continuous_default: 0.0
@@ -28,6 +29,6 @@ excluded:
       - 'last_review'   
 file_names:
    input_csv: AB_NYC_2019.csv
-   pickled_input_dataframe: AB_NYC_2019_remove_bad_values_jun21_2020.pkl
-   pickled_output_dataframe: AB_NYC_2019_remove_bad_values_jun21_2020.pkl
+   pickled_input_dataframe: AB_NYC_2019_jul30_2020.pkl
+   pickled_output_dataframe: AB_NYC_2019_remove_bad_values_jul30_2020.pkl
    
