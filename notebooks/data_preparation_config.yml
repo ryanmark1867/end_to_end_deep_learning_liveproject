@@ -24,11 +24,27 @@ columns:
       - 'price'
       - 'id'
 category_defaults:
-      categorical: missing
-      continuous: 0.0
-      text: missing
-      date: 2019-01-01
-      excluded: missing
+   categorical: missing
+   continuous: 0.0
+   text: missing
+   date: 2019-01-01
+   excluded: missing
+non_negative_continuous:
+    - 'minimum_nights'
+    - 'number_of_reviews'
+    - 'reviews_per_month'
+    - 'calculated_host_listings_count'
+valid_values:
+   neighbourhood_group:
+      - 'Bronx'
+      - 'Brooklyn'
+      - 'Queens'
+      - 'Manhattan'
+      - 'Staten Island'
+   room_type:
+      - 'Private room'
+      - 'Shared room'
+      - 'Entire home/apt'
 file_names:
    input_csv: AB_NYC_2019.csv
    pickled_input_dataframe: AB_NYC_2019_input_aug2_2020.pkl
