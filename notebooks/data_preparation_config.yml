@@ -3,32 +3,34 @@ general:
    save_raw_dataframe: False
    save_transformed_dataframe: True
    remove_bad_values: True
-   continuous_default: 0.0
-   time_default: 2019-01-01
-   categorical_default: missing
-   text_default: missing
-categorical:
+columns:
+   categorical:
       - 'neighbourhood_group'
       - 'neighbourhood'
       - 'room_type'
-continuous: 
+   continuous: 
       - 'minimum_nights'
       - 'number_of_reviews'
       - 'reviews_per_month'
       - 'calculated_host_listings_count'
-text:
-      - 'name'
-      - 'host_name'
-excluded:
-      - 'price'
-      - 'id'
       - 'latitude'
       - 'longitude'
+   date:
+      - 'last_review'
+   text:
       - 'name'
       - 'host_name'
-      - 'last_review'   
+   excluded:
+      - 'price'
+      - 'id'
+category_defaults:
+      categorical: missing
+      continuous: 0.0
+      text: missing
+      date: 2019-01-01
+      excluded: missing
 file_names:
    input_csv: AB_NYC_2019.csv
-   pickled_input_dataframe: AB_NYC_2019_jul30_2020.pkl
-   pickled_output_dataframe: AB_NYC_2019_remove_bad_values_jul30_2020.pkl
+   pickled_input_dataframe: AB_NYC_2019_input_aug2_2020.pkl
+   pickled_output_dataframe: AB_NYC_2019_output_aug2_2020.pkl
    
