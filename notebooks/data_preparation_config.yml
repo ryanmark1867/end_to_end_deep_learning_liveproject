@@ -45,6 +45,19 @@ valid_values:
       - 'Private room'
       - 'Shared room'
       - 'Entire home/apt'
+bounding_box:
+    max_long: -73.70018092
+    max_lat: 40.91617849
+    min_long: -74.25909008
+    min_lat: 40.47739894
+newark_bounding_box:
+    max_long: -74.11278706
+    max_lat: 40.67325015
+    min_long: -74.25132408
+    min_lat: 40.78813864
+geo_columns:
+    - 'latitude'
+    - 'longitude'
 file_names:
    input_csv: AB_NYC_2019.csv
    pickled_input_dataframe: AB_NYC_2019_input_aug2_2020.pkl
