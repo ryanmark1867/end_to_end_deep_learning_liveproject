@@ -1,6 +1,6 @@
 general:
-   load_from_scratch: False
-   save_raw_dataframe: False
+   load_from_scratch: True
+   save_raw_dataframe: True
    save_transformed_dataframe: True
    remove_bad_values: True
 columns:
@@ -60,6 +60,6 @@ geo_columns:
     - 'longitude'
 file_names:
    input_csv: AB_NYC_2019.csv
-   pickled_input_dataframe: AB_NYC_2019_input_aug2_2020.pkl
-   pickled_output_dataframe: AB_NYC_2019_output_aug2_2020.pkl
+   pickled_input_dataframe: AB_NYC_2019_input_aug16_2020.pkl
+   pickled_output_dataframe: AB_NYC_2019_output_aug16_2020.pkl
    
