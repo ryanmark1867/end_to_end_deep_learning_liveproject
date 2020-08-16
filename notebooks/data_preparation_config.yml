@@ -1,6 +1,6 @@
 general:
-   load_from_scratch: True
-   save_raw_dataframe: True
+   load_from_scratch: False
+   save_raw_dataframe: False
    save_transformed_dataframe: True
    remove_bad_values: True
 columns:
