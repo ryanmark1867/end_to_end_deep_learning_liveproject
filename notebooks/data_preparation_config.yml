@@ -1,7 +1,7 @@
 general:
    load_from_scratch: False
    save_raw_dataframe: False
-   save_transformed_dataframe: True
+   save_transformed_dataframe: False
    remove_bad_values: True
 columns:
    categorical:
@@ -29,6 +29,12 @@ category_defaults:
    text: missing
    date: 2019-01-01
    excluded: missing
+category_invalid_value_replacements:
+   categorical: bad_categorical
+   continuous: bad_continuous
+   text: bad_text
+   date: bad_date
+   exclude: bad_excluded
 non_negative_continuous:
     - 'minimum_nights'
     - 'number_of_reviews'
