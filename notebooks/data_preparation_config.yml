@@ -35,6 +35,8 @@ category_invalid_value_replacements:
    text: bad_text
    date: bad_date
    exclude: bad_excluded
+latitude_replacement: bad_latitude
+longitude_replacement: bad_longitude
 non_negative_continuous:
     - 'minimum_nights'
     - 'number_of_reviews'
@@ -67,5 +69,5 @@ geo_columns:
 file_names:
    input_csv: AB_NYC_2019.csv
    pickled_input_dataframe: AB_NYC_2019_input_aug16_2020.pkl
-   pickled_output_dataframe: AB_NYC_2019_output_aug19_2020.pkl
+   pickled_output_dataframe: AB_NYC_2019_output_aug20_2020.pkl
    
