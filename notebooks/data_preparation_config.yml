@@ -1,7 +1,7 @@
 general:
    load_from_scratch: False
    save_raw_dataframe: False
-   save_transformed_dataframe: False
+   save_transformed_dataframe: True
    remove_bad_values: True
 columns:
    categorical:
@@ -67,5 +67,5 @@ geo_columns:
 file_names:
    input_csv: AB_NYC_2019.csv
    pickled_input_dataframe: AB_NYC_2019_input_aug16_2020.pkl
-   pickled_output_dataframe: AB_NYC_2019_output_aug16_2020.pkl
+   pickled_output_dataframe: AB_NYC_2019_output_aug19_2020.pkl
    
