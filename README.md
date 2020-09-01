@@ -11,7 +11,10 @@
 
 ## To exercise the code
 
-TBD
+- Copy Airbnb NYC dataset to data directory in cloned repo
+- Run data_cleanup notebook with appropriate config settings
+- Run model_training notebook on output of data_cleanup notebook with appropriate config settings
+- Run deploy flask module with appropriate config settings
 
 
 ## Background
