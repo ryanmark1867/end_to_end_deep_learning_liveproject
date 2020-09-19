@@ -11,9 +11,10 @@ general:
    textmax: 50
    pickled_data_file: '20142018_0930.pkl'
    pickled_dataframe: 'AB_NYC_2019_output_aug19_2020.pkl'
-   modifier: 'aug25_2020'
+   modifier: 'sep10_2020'
    targetthresh: 6.0 # use as boundary between delay and no delay
    targetcontinuous: False # switch to determine whether target is continuous
+   target_col: 'price'
    emptythresh: 6000
    zero_weight: 1.0 # class_weight = {0 : zero_weight, 1: one_weight}
    one_weight: 45.878 # default one_weight
@@ -22,7 +23,7 @@ general:
 test_parms:
    testproportion: 0.2 # proportion of data reserved for test set
    trainproportion: 0.8 # proportion of non-test data dedicated to training (vs. validation)
-   current_experiment: 1
+   current_experiment: 5
    repeatable_run: False # switch to control whether runs are repeated identically
    get_test_train_acc: True # switch to control whether block to get test and train accuracy is after training
 categorical:
