@@ -134,7 +134,7 @@ def home():
  
     
 @app.route('/show-prediction/')
-def about():
+def show_prediction():
     ''' get the scoring parameters entered in home.html, assemble them into a dataframe, run that dataframe through pipelines
         apply the trained model to the output of the pipeline, and display the interpreted score in show-prediction.html
     '''
