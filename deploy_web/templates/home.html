@@ -6,29 +6,51 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
 </head> 
 <!-- <body onload="load_neighbourhood_dropdown()"> -->
-<body onload="load_neighbourhood_dropdown()">
+<body onload="load_selections()">
 <div class="home"> 
 	<h1 style="color: green"> 
-		Please select the details for the listing you want to make a price prediction on FF
+		Please select the details for the listing you want to make a price prediction on
 	</h1> 
-	<!-- show selection lists for each parameter for the Airbnb listing -->
+	<!-- show selection lists for each categorical parameter for the Airbnb listing -->
 	<p> 
 		Select the neighbourhood group of your listing: 
-		<select id="neighbourhood_group"> 
-		<!--
-			<option value="Bronx">Bronx</option> 
-			<option value="Brooklyn">Brooklyn</option> 
-			<option value="Manhattan">Manhattan</option> 
-			<option value="Queens">Queens</option> 
-			<option value="Staten Island">Staten Island</option> 
-		-->
+		<!-- when a new neighbourhood group is selected, call function to reload neighbourhood list-->
+		<select id="neighbourhood_group" onChange="reload_neighbourhood_dropdown()"> 
 		</select> 
 	</p> 
+	<p>
+		Select the neighbourhood of your listing:
+		<select id="neighbourhood">
+		</select>
+	</p>
+	<p>
+		Select the room type of your listing:
+		<select id="room_type">
+		</select>
+	</p>
 	<p> 
 		<label for="minimum_nights">Minimum number of nights (1-1000):</label>
 
 			<input type="number" id="minimum_nights" name="minimum_nights"
 			min="1" max="1000">
+	</p>
+	<p> 
+		<label for="number_of_reviews">Number of reviews (1-700):</label>
+
+			<input type="number" id="number_of_reviews" name="number_of_reviews"
+			min="1" max="700">
+	</p>
+	<p> 
+		<label for="reviews_per_month">Reviews per month (0.01-100):</label>
+
+			<input type="number" id="reviews_per_month" name="reviews_per_month"
+			min="0.01" max="100">
+	</p>
+	<p> 
+		<label for="calculated_host_listings_count">Host listings count (1-350):</label>
+
+			<input type="number" id="calculated_host_listings_count" name="calculated_host_listings_count"
+			min="1" max="350">
 	</p>
 
 	
@@ -49,14 +71,22 @@
 		function getOption() { 
 			// load selections from HTML controls into JS variables
 			selectElementNeighbourhoodGroup = document.querySelector('#neighbourhood_group'); 
-			
+			selectElementNeighbourhood = document.querySelector('#neighbourhood');
+			selectElementRoomType = document.querySelector('#room_type');
+			// load values of continuous scoring parameters
+			minimum_nights_value = document.getElementById("minimum_nights").value;
+			number_of_reviews_value = document.getElementById("number_of_reviews").value;
+			reviews_per_month_value = document.getElementById("reviews_per_month").value;
+			host_listing_count_value = document.getElementById("calculated_host_listings_count").value;
 					
 			
 			// load the values selected for the scoring parameters into JS variables 
 			neighbourhood_group_string = selectElementNeighbourhoodGroup.options[selectElementNeighbourhoodGroup.selectedIndex].value
+			neighbourhood_string = selectElementNeighbourhood.options[selectElementNeighbourhood.selectedIndex].value
+			room_type_string = selectElementRoomType.options[selectElementRoomType.selectedIndex].value
 			// build complete URL, including scoring parameters, for the result display page
 			prefix = "/show-prediction/?"
-			window.output = prefix.concat("neighbourhood_group=",neighbourhood_group_string,"&minimum_nights=",minimum_nights)
+			window.output = prefix.concat("neighbourhood_group=",neighbourhood_group_string,"&neighbourhood=",neighbourhood_string,"&room_type=",room_type_string,"&minimum_nights=",minimum_nights_value,"&number_of_reviews=",number_of_reviews_value,"&reviews_per_month=",reviews_per_month_value,"&calculated_host_listings_count=",host_listing_count_value)
 			document.querySelector('.output').textContent = window.output; 
 		} 
 	</script> 
@@ -71,13 +101,57 @@
 	}		
 	</script>
 	<script>
-	function load_neighbourhood_dropdown(){
+	function load_selections(){
+	// initialize all selections
 	var select = document.getElementById("neighbourhood_group"); 
-	var options = ["Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"];
-	// Populate list with options:
-		for(var i = 0; i < options.length; i++) {
-			var opt = options[i];
+	var select_neighbourhood = document.getElementById("neighbourhood"); 
+	var select_room_type = document.getElementById("room_type");
+	var neighbourhood_group_list = ["Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"];
+	var neighbourhood_init_list = ["Allerton","Baychester","Belmont","Bronxdale","Castle Hill","City Island","Claremont Village","Clason Point","Concourse","Concourse Village","Co-op City","East Morrisania","Eastchester","Edenwald","Fieldston","Fordham","Highbridge","Hunts Point","Kingsbridge","Longwood","Melrose","Morris Heights","Morris Park","Morrisania","Mott Haven","Mount Eden","Mount Hope","North Riverdale","Norwood","Olinville","Parkchester","Pelham Bay","Pelham Gardens","Port Morris","Riverdale","Schuylerville","Soundview","Spuyten Duyvil","Throgs Neck","Tremont","Unionport","University Heights","Van Nest","Wakefield","West Farms","Westchester Square","Williamsbridge","Woodlawn"]
+	var room_type_list = ["Entire home/apt","Private room","Shared room"]
+	// set defaults for numeric input fields:
+	document.getElementById("minimum_nights").defaultValue = 7;
+	document.getElementById("number_of_reviews").defaultValue = 1;
+	document.getElementById("reviews_per_month").defaultValue = 0.5;
+	document.getElementById("calculated_host_listings_count").defaultValue = 1;
+	
+	// Populate neighbourhood_group list:
+		for(var i = 0; i < neighbourhood_group_list.length; i++) {
+			var opt = neighbourhood_group_list[i];
 			select.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+		}
+		// initialize neighbourhood list
+		for(var i = 0; i < neighbourhood_init_list.length; i++) {
+			var opt = neighbourhood_init_list[i];
+			select_neighbourhood.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+		}
+		// populate room_type list
+		for(var i = 0; i < room_type_list.length; i++) {
+			var opt = room_type_list[i];
+			select_room_type.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+		}
+	};
+	
+	</script>
+	<script>
+	function reload_neighbourhood_dropdown(){
+	var select_neighbourhood = document.getElementById("neighbourhood"); 
+	// get the current selection in the NeighbourhoodGroup select
+	selectElementNeighbourhoodGroup = document.querySelector('#neighbourhood_group'); 
+	// load the values selected for the scoring parameters into JS variables 
+	neighbourhood_group_string = selectElementNeighbourhoodGroup.options[selectElementNeighbourhoodGroup.selectedIndex].value
+	neighbourhood_map = new Map();
+	neighbourhood_map.set("Bronx",["Allerton","Baychester","Belmont","Bronxdale","Castle Hill","City Island","Claremont Village","Clason Point","Concourse","Concourse Village","Co-op City","East Morrisania","Eastchester","Edenwald","Fieldston","Fordham","Highbridge","Hunts Point","Kingsbridge","Longwood","Melrose","Morris Heights","Morris Park","Morrisania","Mott Haven","Mount Eden","Mount Hope","North Riverdale","Norwood","Olinville","Parkchester","Pelham Bay","Pelham Gardens","Port Morris","Riverdale","Schuylerville","Soundview","Spuyten Duyvil","Throgs Neck","Tremont","Unionport","University Heights","Van Nest","Wakefield","West Farms","Westchester Square","Williamsbridge","Woodlawn"]);
+	neighbourhood_map.set("Brooklyn",["Bath Beach","Bay Ridge","Bedford-Stuyvesant","Bensonhurst","Bergen Beach","Boerum Hill","Borough Park","Brighton Beach","Brooklyn Heights","Brownsville","Bushwick","Canarsie","Carroll Gardens","Clinton Hill","Cobble Hill","Columbia St","Coney Island","Crown Heights","Cypress Hills","Downtown Brooklyn","DUMBO","Dyker Heights","East Flatbush","East New York","Flatbush","Flatlands","Fort Greene","Fort Hamilton","Gowanus","Gravesend","Greenpoint","Kensington","Manhattan Beach","Midwood","Mill Basin","Navy Yard","Park Slope","Prospect Heights","Prospect-Lefferts Gardens","Red Hook","Sea Gate","Sheepshead Bay","South Slope","Sunset Park","Vinegar Hill","Williamsburg","Windsor Terrace"]);
+	neighbourhood_map.set("Manhattan",["Battery Park City","Chelsea","Chinatown","Civic Center","East Harlem","East Village","Financial District","Flatiron District","Gramercy","Greenwich Village","Harlem","Hell's Kitchen","Inwood","Kips Bay","Little Italy","Lower East Side","Marble Hill","Midtown","Morningside Heights","Murray Hill","NoHo","Nolita","Roosevelt Island","SoHo","Stuyvesant Town","Theater District","Tribeca","Two Bridges","Upper East Side","Upper West Side","Washington Heights","West Village"]);
+	neighbourhood_map.set("Queens",["Arverne","Astoria","Bay Terrace","Bayside","Bayswater","Belle Harbor","Bellerose","Breezy Point","Briarwood","Cambria Heights","College Point","Corona","Ditmars Steinway","Douglaston","East Elmhurst","Edgemere","Elmhurst","Far Rockaway","Flushing","Forest Hills","Fresh Meadows","Glendale","Hollis","Holliswood","Howard Beach","Jackson Heights","Jamaica","Jamaica Estates","Jamaica Hills","Kew Gardens","Kew Gardens Hills","Laurelton","Little Neck","Long Island City","Maspeth","Middle Village","Neponsit","Ozone Park","Queens Village","Rego Park","Richmond Hill","Ridgewood","Rockaway Beach","Rosedale","South Ozone Park","Springfield Gardens","St. Albans","Sunnyside","Whitestone","Woodhaven","Woodside"]);
+	neighbourhood_map.set("Staten Island",["Arden Heights","Arrochar","Bay Terrace, Staten Island","Bull's Head","Castleton Corners","Clifton","Concord","Dongan Hills","Eltingville","Emerson Hill","Fort Wadsworth","Graniteville","Grant City","Great Kills","Grymes Hill","Howland Hook","Huguenot","Lighthouse Hill","Mariners Harbor","Midland Beach","New Brighton","New Dorp","New Dorp Beach","New Springville","Oakwood","Port Richmond","Prince's Bay","Randall Manor","Richmondtown","Rosebank","Rossville","Shore Acres","Silver Lake","South Beach","St. George","Stapleton","Todt Hill","Tompkinsville","Tottenville","West Brighton","Westerleigh","Willowbrook","Woodrow"]);
+	neighbourhood_reload_list = neighbourhood_map.get(neighbourhood_group_string)
+	// populate neighbourhood list
+	select_neighbourhood.innerHTML = "";
+		for(var i = 0; i < neighbourhood_reload_list.length; i++) {
+			var opt = neighbourhood_reload_list[i];
+			select_neighbourhood.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
 		}
 	};
 	</script>

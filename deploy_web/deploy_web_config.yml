@@ -2,7 +2,7 @@ general:
    debug_on: False
    logging_level: "WARNING" # switch to control logging - WARNING for full logging; ERROR to minimize logging
    BATCH_SIZE: 1000
-   score_parameters_from_website: False
+   score_parameters_from_website: True
    scoring_columns:
         - 'neighbourhood_group'
         - 'neighbourhood'
