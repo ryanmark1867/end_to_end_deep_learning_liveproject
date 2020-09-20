@@ -12,7 +12,7 @@ general:
         - 'reviews_per_month'
         - 'calculated_host_listings_count'
 file_names:
-   pipeline1_filename: sc_delay_piplelinesep10_20200.pkl
+   pipeline1_filename: sc_delay_piplelinesep10_2020.pkl
    pipeline2_filename: sc_delay_pipleline_keras_prepsep10_2020.pkl
    model_filename: scmodelsep10_2020_5.h5
    

@@ -93,14 +93,22 @@ model_path = os.path.join(get_path('models'),model_filename)
 
 # brute force a scoring sample, bagged from test set
 score_sample = {}
-score_sample['neighbourhood_group'] = np.array([2])
-score_sample['neighbourhood'] = np.array([209])
-score_sample['room_type'] = np.array([0])
-score_sample['minimum_nights'] = np.array([14])
-score_sample['number_of_reviews'] = np.array([2])
-score_sample['reviews_per_month'] = np.array([0.65])
-score_sample['calculated_host_listings_count'] = np.array([1])
-
+'''
+score_sample['neighbourhood_group'] = 'Manhattan'
+score_sample['neighbourhood'] = 'West Village'
+score_sample['room_type'] = 'Entire home/apt'
+score_sample['minimum_nights'] = 14
+score_sample['number_of_reviews'] = 2
+score_sample['reviews_per_month'] = 0.65
+score_sample['calculated_host_listings_count'] = 1
+'''
+score_sample['neighbourhood_group'] = 'Brooklyn'
+score_sample['neighbourhood'] = 'Park Slope'
+score_sample['room_type'] = 'Private room'
+score_sample['minimum_nights'] = 14
+score_sample['number_of_reviews'] = 35
+score_sample['reviews_per_month'] = 0.35
+score_sample['calculated_host_listings_count'] = 1
 
 
 
@@ -155,9 +163,10 @@ def about():
     # create and load scoring parameters dataframe (containing the scoring parameters)that will be fed into the pipelines
     score_df = pd.DataFrame(columns=scoring_columns)
     logging.warning("score_df before load is "+str(score_df))
-    for col in scoring_columns_columns:
+    for col in scoring_columns:
         score_df.at[0,col] = score_values_dict[col]
     # apply the pipelines to the scoring parameters dataframe
+    logging.warning("score_df after load is "+str(score_df))
     prepped_xform1 = pipeline1.transform(score_df)
     prepped_xform2 = pipeline2.transform(prepped_xform1)
     logging.warning("prepped_xform2 is ",prepped_xform2)
