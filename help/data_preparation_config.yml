@@ -1,0 +1,73 @@
+general:
+   load_from_scratch: False
+   save_raw_dataframe: False
+   save_transformed_dataframe: True
+   remove_bad_values: True
+columns:
+   categorical:
+      - 'neighbourhood_group'
+      - 'neighbourhood'
+      - 'room_type'
+   continuous: 
+      - 'minimum_nights'
+      - 'number_of_reviews'
+      - 'reviews_per_month'
+      - 'calculated_host_listings_count'
+      - 'latitude'
+      - 'longitude'
+   date:
+      - 'last_review'
+   text:
+      - 'name'
+      - 'host_name'
+   excluded:
+      - 'price'
+      - 'id'
+category_defaults:
+   categorical: missing
+   continuous: 0.0
+   text: missing
+   date: 2019-01-01
+   excluded: missing
+category_invalid_value_replacements:
+   categorical: bad_categorical
+   continuous: bad_continuous
+   text: bad_text
+   date: bad_date
+   exclude: bad_excluded
+latitude_replacement: bad_latitude
+longitude_replacement: bad_longitude
+non_negative_continuous:
+    - 'minimum_nights'
+    - 'number_of_reviews'
+    - 'reviews_per_month'
+    - 'calculated_host_listings_count'
+valid_values:
+   neighbourhood_group:
+      - 'Bronx'
+      - 'Brooklyn'
+      - 'Queens'
+      - 'Manhattan'
+      - 'Staten Island'
+   room_type:
+      - 'Private room'
+      - 'Shared room'
+      - 'Entire home/apt'
+bounding_box:
+    max_long: -73.70018092
+    max_lat: 40.91617849
+    min_long: -74.25909008
+    min_lat: 40.47739894
+newark_bounding_box:
+    max_long: -74.11278706
+    max_lat: 40.67325015
+    min_long: -74.25132408
+    min_lat: 40.78813864
+geo_columns:
+    - 'latitude'
+    - 'longitude'
+file_names:
+   input_csv: AB_NYC_2019.csv
+   pickled_input_dataframe: AB_NYC_2019_input_aug16_2020.pkl
+   pickled_output_dataframe: AB_NYC_2019_output_aug20_2020.pkl
+   

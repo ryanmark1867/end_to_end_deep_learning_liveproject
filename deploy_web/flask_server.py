@@ -124,7 +124,6 @@ HTML_TEMPLATE = Template("""
 """)
 
 
-
 @app.route('/')
 def home():   
     ''' render home page that is served at localhost and allows the user to enter details about their streetcar trip'''
