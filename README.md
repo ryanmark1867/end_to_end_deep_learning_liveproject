@@ -7,6 +7,7 @@
 - **data** - processed datasets and pickle files for intermediate datasets
 - **models** - saved trained models
 - **notebooks** - code
+- **help** - versions of code with only comments and function signatures
 - **pipelines** - pickled pipeline files
 
 ## To exercise the code
