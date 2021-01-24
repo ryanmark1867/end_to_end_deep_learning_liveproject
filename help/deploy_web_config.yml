@@ -1,0 +1,18 @@
+general:
+   debug_on: False
+   logging_level: "WARNING" # switch to control logging - WARNING for full logging; ERROR to minimize logging
+   BATCH_SIZE: 1000
+   score_parameters_from_website: True
+   scoring_columns:
+        - 'neighbourhood_group'
+        - 'neighbourhood'
+        - 'room_type'
+        - 'minimum_nights'
+        - 'number_of_reviews'
+        - 'reviews_per_month'
+        - 'calculated_host_listings_count'
+file_names:
+   pipeline1_filename: sc_delay_piplelinesep10_2020.pkl
+   pipeline2_filename: sc_delay_pipleline_keras_prepsep10_2020.pkl
+   model_filename: scmodelsep10_2020_5.h5
+   
