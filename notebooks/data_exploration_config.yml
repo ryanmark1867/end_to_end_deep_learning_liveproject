@@ -1,26 +1,26 @@
-general:
+general: # control overall operation
    load_from_scratch: False
    save_raw_dataframe: False
    save_transformed_dataframe: False
    remove_bad_values: True
-columns:
-   categorical:
+columns: # categorize columns
+   categorical: # columns with a finite set of values
       - 'neighbourhood_group'
       - 'neighbourhood'
       - 'room_type'
-   continuous: 
+   continuous: # columns with values that can take an unlimited set of values
       - 'minimum_nights'
       - 'number_of_reviews'
       - 'reviews_per_month'
       - 'calculated_host_listings_count'
       - 'latitude'
       - 'longitude'
-   date:
+   date: # date columns
       - 'last_review'
-   text:
+   text: # text columns
       - 'name'
       - 'host_name'
-   excluded:
+   excluded: # columns that are not used as input features for training
       - 'price'
       - 'id'
 bounding_box:
