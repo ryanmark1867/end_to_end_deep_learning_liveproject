@@ -13,9 +13,9 @@
 ## To exercise the code
 
 - Copy Airbnb NYC dataset to data directory in cloned repo
-- Run data_cleanup notebook with appropriate config settings
-- Run model_training notebook on output of data_cleanup notebook with appropriate config settings
-- Run deploy flask module with appropriate config settings
+- Run [data_cleanup.ipynb](https://github.com/ryanmark1867/end_to_end_deep_learning_liveproject/blob/master/notebooks/data_cleanup.ipynb) notebook with appropriate config settings
+- Run [model_training.ipynb](https://github.com/ryanmark1867/end_to_end_deep_learning_liveproject/blob/master/notebooks/model_training.ipynb) notebook on output of data_cleanup notebook with appropriate config settings
+- Run [flask_server.py](https://github.com/ryanmark1867/end_to_end_deep_learning_liveproject/blob/master/deploy_web/flask_server.py) module with appropriate config settings
 
 
 ## Background
